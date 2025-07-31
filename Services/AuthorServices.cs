@@ -14,6 +14,11 @@ namespace apiBook.services
       _context = context;
     }
 
+    public Task<ResponseModel<AuthorModel>> CreateAuthor(CreateAuthorModel author)
+    {
+
+    }
+
     public async Task<ResponseModel<AuthorModel>> GetAuthorByBookId(int BookId)
     {
       ResponseModel<AuthorModel> response = new ResponseModel<AuthorModel>();

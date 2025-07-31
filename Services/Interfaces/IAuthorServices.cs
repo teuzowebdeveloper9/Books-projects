@@ -8,6 +8,7 @@ namespace apiBook.services
     Task<ResponseModel<List<AuthorModel>>> GetAuthors();
     Task<ResponseModel<AuthorModel>> GetAuthorById(int id);
     Task<ResponseModel<AuthorModel>> GetAuthorByBookId(int BookId);
+    Task<ResponseModel<AuthorModel>> CreateAuthor(CreateAuthorModel author);
 
 
   }
