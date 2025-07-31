@@ -14,9 +14,59 @@ namespace apiBook.services
       _context = context;
     }
 
-    public Task<ResponseModel<AuthorModel>> CreateAuthor(CreateAuthorModel author)
+    public async Task<ResponseModel<AuthorModel>> CreateAuthor(CreateAuthorModel author)
     {
+      ResponseModel<AuthorModel> response = new ResponseModel<AuthorModel>();
+      try
+      {
+        var newAuthor = new AuthorModel()
+        {
+          Name = author.Name,
+          Surname = author.Surname,
+        };
+        _context.authors.Add(newAuthor);
+        await _context.SaveChangesAsync();
+        response.Data = newAuthor;
+        response.Mensage = "success in creating author";
+        response.Status = true;
+        return response;
+      }
+      catch (Exception e)
+      {
+        response.Mensage = e.Message;
+        response.Status = false;
+        return response;
+      }
+    }
 
+    public async Task<ResponseModel<AuthorModel>> DeleteAuthor(int idAuthor)
+    {
+      ResponseModel<AuthorModel> response = new ResponseModel<AuthorModel>();
+      try
+      {
+        var ExcludeAuthor = await _context.authors.FindAsync(idAuthor);
+        if (ExcludeAuthor == null)
+        {
+          response.Mensage = "There is no author with that id try again";
+          response.Status = false;
+          return response;
+        }
+
+        _context.authors.Remove(ExcludeAuthor);
+        await _context.SaveChangesAsync();
+
+        response.Mensage = "success in deleting author";
+        response.Status = true;
+
+        return response;
+      }
+      catch (Exception e)
+      {
+
+        response.Mensage = e.Message;
+        response.Status = false;
+        return response;
+      }
     }
 
     public async Task<ResponseModel<AuthorModel>> GetAuthorByBookId(int BookId)
@@ -92,6 +142,35 @@ namespace apiBook.services
 
         return response;
 
+      }
+      catch (Exception e)
+      {
+        response.Mensage = e.Message;
+        response.Status = false;
+        return response;
+      }
+    }
+
+    public async Task<ResponseModel<AuthorModel>> UpdateAuthor(UpdateAuthorModel author)
+    {
+      ResponseModel<AuthorModel> response = new ResponseModel<AuthorModel>();
+      try
+      {
+        var authorToUpdate = await _context.authors.FindAsync(author.Id);
+        if (authorToUpdate == null)
+        {
+          response.Mensage = "There is no author with that id try again";
+          response.Status = false;
+          return response;
+        }
+        authorToUpdate.Name = author.Name;
+        authorToUpdate.Surname = author.Surname;
+        _context.authors.Update(authorToUpdate);
+        await _context.SaveChangesAsync();
+        response.Data = authorToUpdate;
+        response.Mensage = "success in updating author";
+        response.Status = true;
+        return response;
       }
       catch (Exception e)
       {

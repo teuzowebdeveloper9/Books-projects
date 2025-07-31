@@ -36,5 +36,23 @@ namespace apiBook.controllers
       var response = await _authorServices.GetAuthorByBookId(bookId);
       return Ok(response);
     }
+    [HttpPost]
+    public async Task<ActionResult<ResponseModel<AuthorModel>>> CreateAuthor([FromBody] CreateAuthorModel author)
+    {
+      var response = await _authorServices.CreateAuthor(author);
+      return Ok(response);
+    }
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<ResponseModel<AuthorModel>>> DeleteAuthor(int id)
+    {
+      var response = await _authorServices.DeleteAuthor(id);
+      return NoContent();
+    }
+    [HttpPut]
+    public async Task<ActionResult<ResponseModel<AuthorModel>>> UpdateAuthor([FromBody] UpdateAuthorModel author)
+    {
+      var response = await _authorServices.UpdateAuthor(author);
+      return Ok(response);
+    }
   }
 }
