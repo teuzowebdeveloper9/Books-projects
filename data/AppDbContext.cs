@@ -10,7 +10,7 @@ namespace apiBook.data
     {
     }
 
-    DbSet<BookModel> books { get; set; }
-    DbSet<AuthorModel> authors { get; set; }
+    public DbSet<BookModel> books { get; set; }
+    public DbSet<AuthorModel> authors { get; set; }
   }
 }
