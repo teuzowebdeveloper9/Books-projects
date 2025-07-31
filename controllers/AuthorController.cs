@@ -29,5 +29,12 @@ namespace apiBook.controllers
       var response = await _authorServices.GetAuthorById(id);
       return Ok(response);
     }
+
+    [HttpGet("book/{bookId}")]
+    public async Task<ActionResult<ResponseModel<AuthorModel>>> GetAuthorByBookId(int bookId)
+    {
+      var response = await _authorServices.GetAuthorByBookId(bookId);
+      return Ok(response);
+    }
   }
 }

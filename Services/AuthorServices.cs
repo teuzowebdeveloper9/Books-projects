@@ -14,9 +14,33 @@ namespace apiBook.services
       _context = context;
     }
 
-    public Task<ResponseModel<AuthorModel>> GetAuthorByBookId(int BookId)
+    public async Task<ResponseModel<AuthorModel>> GetAuthorByBookId(int BookId)
     {
-      throw new NotImplementedException();
+      ResponseModel<AuthorModel> response = new ResponseModel<AuthorModel>();
+      try
+      {
+
+        var author = await _context.authors
+                      .Include(a => a.Books)
+        .FirstOrDefaultAsync(a => a.Books.Any(b => b.Id == BookId));
+
+        if (author == null)
+        {
+          response.Mensage = "There is no author with a book using the given BookId.";
+          response.Status = false;
+          return response;
+        }
+        response.Data = author;
+        response.Mensage = "success in catching author";
+        response.Status = true;
+        return response;
+      }
+      catch (Exception e)
+      {
+        response.Mensage = e.Message;
+        response.Status = false;
+        return response;
+      }
     }
 
     public async Task<ResponseModel<AuthorModel>> GetAuthorById(int id)
