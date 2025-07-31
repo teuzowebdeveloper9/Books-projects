@@ -1,3 +1,4 @@
+using apiBook.models;
 using Microsoft.EntityFrameworkCore;
 
 namespace apiBook.data
@@ -9,6 +10,7 @@ namespace apiBook.data
     {
     }
 
-
+    DbSet<BookModel> books { get; set; }
+    DbSet<AuthorModel> authors { get; set; }
   }
 }

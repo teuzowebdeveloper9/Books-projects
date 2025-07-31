@@ -10,5 +10,7 @@ namespace apiBook.models
     public string Name { get; set; }
 
     public string Surname { get; set; }
+
+    public ICollection<BookModel> Books { get; set; }
   }
 }
