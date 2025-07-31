@@ -1,7 +1,12 @@
 using apiBook.data;
+using apiBook.services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IAuthorServices, AuthorServices>();
+
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseMySql(
@@ -14,6 +19,8 @@ options.UseMySql(
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.MapControllers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
