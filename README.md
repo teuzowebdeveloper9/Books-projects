@@ -38,6 +38,15 @@ This project heavily relies on SQL for database operations. While ORMs (Object-R
 - Error correction scripts
 - Data manipulation and querying
 
+## screenshots
+
+<img width="1366" height="692" alt="image" src="https://github.com/user-attachments/assets/b5471e72-2d7a-4114-a257-b168208f6b49" />
+<img width="1366" height="34" alt="image" src="https://github.com/user-attachments/assets/caf955a0-0fb5-422a-be6c-cf8679da5d48" />
+<img width="1366" height="39" alt="image" src="https://github.com/user-attachments/assets/014acb82-443a-414f-b881-e6ed6cd7753e" />
+
+
+
+
 ## Learning Outcomes
 
 This project provided an excellent opportunity to deepen SQL knowledge and skills. While ORMs are convenient, understanding and using SQL directly is crucial for database management and optimization.
