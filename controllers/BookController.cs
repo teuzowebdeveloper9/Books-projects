@@ -21,5 +21,24 @@ namespace apiBook.controllers
       var book = await _bookService.GetBookById(bookId);
       return Ok(book);
     }
+    [HttpPut]
+    public async Task<ActionResult<ResponseModel<BookModel>>> UpdateBook([FromBody] UpdateBookModel book)
+    {
+      var response = await _bookService.UpdateBook(book);
+      return Ok(response);
+    }
+    [HttpGet]
+    public async Task<ActionResult<ResponseModel<List<BookModel>>>> GetBook()
+    {
+      var response = await _bookService.GetBook();
+      return Ok(response);
+    }
+    [HttpDelete("{bookId}")]
+    public async Task<ActionResult<ResponseModel<BookModel>>> DeleteBook([FromRoute] int bookId)
+    {
+      var response = await _bookService.DeleteBook(bookId);
+      return Ok(response);
+    }
+
   }
 }
